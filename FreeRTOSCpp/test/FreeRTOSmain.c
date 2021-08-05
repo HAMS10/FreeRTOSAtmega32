@@ -8,14 +8,14 @@
 #include "FreeRTOS.h"
 #include "task.h"
 
-#include "../src/uCConfig.h"
-#include "../src/module.h"
+#include "../src/src_uCConfig.h"
+#include "../src/srcTask.h"
 
 int main(void)
 {
-	uCConfigPorts();
+	uCconfigPorts();
 
-	moduleStartTasks(tskIDLE_PRIORITY + 1);
+	taskStartThreads(tskIDLE_PRIORITY + 1);
 
 	vTaskStartScheduler();
 

@@ -20,11 +20,11 @@ lib\tasks.c
 
 lib\timers.c
 
-src\uCConfig\uCConfigPorts.c
+src\task\primary\primary.c
 
-src\module\moduleStartTasks.c
+src\task\taskStartThreads.c
 
-src\module\module.c
+src\uCconfig\uCconfigPorts.c
 
 test\FreeRTOSmain.c
 

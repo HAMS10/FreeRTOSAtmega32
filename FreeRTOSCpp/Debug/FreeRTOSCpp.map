@@ -254,15 +254,15 @@ Discarded input sections
  .debug_line    0x00000000       0x1a lib/timers.o
  .debug_str     0x00000000      0x174 lib/timers.o
  .comment       0x00000000       0x31 lib/timers.o
- .text          0x00000000        0x0 src/uCConfig/uCConfigPorts.o
- .data          0x00000000        0x0 src/uCConfig/uCConfigPorts.o
- .bss           0x00000000        0x0 src/uCConfig/uCConfigPorts.o
- .text          0x00000000        0x0 src/module/moduleStartTasks.o
- .data          0x00000000        0x0 src/module/moduleStartTasks.o
- .bss           0x00000000        0x0 src/module/moduleStartTasks.o
- .text          0x00000000        0x0 src/module/module.o
- .data          0x00000000        0x0 src/module/module.o
- .bss           0x00000000        0x0 src/module/module.o
+ .text          0x00000000        0x0 src/task/primary/primary.o
+ .data          0x00000000        0x0 src/task/primary/primary.o
+ .bss           0x00000000        0x0 src/task/primary/primary.o
+ .text          0x00000000        0x0 src/task/taskStartThreads.o
+ .data          0x00000000        0x0 src/task/taskStartThreads.o
+ .bss           0x00000000        0x0 src/task/taskStartThreads.o
+ .text          0x00000000        0x0 src/uCconfig/uCconfigPorts.o
+ .data          0x00000000        0x0 src/uCconfig/uCconfigPorts.o
+ .bss           0x00000000        0x0 src/uCconfig/uCconfigPorts.o
  .text          0x00000000        0x0 test/FreeRTOSmain.o
  .data          0x00000000        0x0 test/FreeRTOSmain.o
  .bss           0x00000000        0x0 test/FreeRTOSmain.o
@@ -360,9 +360,9 @@ LOAD lib/queue.o
 LOAD lib/stream_buffer.o
 LOAD lib/tasks.o
 LOAD lib/timers.o
-LOAD src/uCConfig/uCConfigPorts.o
-LOAD src/module/moduleStartTasks.o
-LOAD src/module/module.o
+LOAD src/task/primary/primary.o
+LOAD src/task/taskStartThreads.o
+LOAD src/uCconfig/uCconfigPorts.o
 LOAD test/FreeRTOSmain.o
 START GROUP
 LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a
@@ -620,14 +620,14 @@ END GROUP
  .text.vTaskSwitchContext
                 0x00000c28       0xa8 lib/tasks.o
                 0x00000c28                vTaskSwitchContext
- .text.uCConfigPorts
-                0x00000cd0        0x2 src/uCConfig/uCConfigPorts.o
-                0x00000cd0                uCConfigPorts
- .text.moduleStartTasks
-                0x00000cd2       0x2e src/module/moduleStartTasks.o
-                0x00000cd2                moduleStartTasks
- .text.module   0x00000d00        0x2 src/module/module.o
-                0x00000d00                module
+ .text.primary  0x00000cd0        0x2 src/task/primary/primary.o
+                0x00000cd0                primary
+ .text.taskStartThreads
+                0x00000cd2       0x2e src/task/taskStartThreads.o
+                0x00000cd2                taskStartThreads
+ .text.uCconfigPorts
+                0x00000d00        0x2 src/uCconfig/uCconfigPorts.o
+                0x00000d00                uCconfigPorts
  .text.main     0x00000d02       0x14 test/FreeRTOSmain.o
                 0x00000d02                main
                 0x00000d16                . = ALIGN (0x2)
@@ -670,7 +670,7 @@ END GROUP
  .rodata.str1.1
                 0x00800061        0x5 lib/tasks.o
  .rodata.str1.1
-                0x00800066        0x9 src/module/moduleStartTasks.o
+                0x00800066        0x9 src/task/taskStartThreads.o
  *(.gnu.linkonce.r*)
                 0x00800070                . = ALIGN (0x2)
  *fill*         0x0080006f        0x1 
@@ -783,9 +783,9 @@ END GROUP
  .comment       0x00000030       0x31 lib/list.o
  .comment       0x00000030       0x31 lib/port.o
  .comment       0x00000030       0x31 lib/tasks.o
- .comment       0x00000030       0x31 src/uCConfig/uCConfigPorts.o
- .comment       0x00000030       0x31 src/module/moduleStartTasks.o
- .comment       0x00000030       0x31 src/module/module.o
+ .comment       0x00000030       0x31 src/task/primary/primary.o
+ .comment       0x00000030       0x31 src/task/taskStartThreads.o
+ .comment       0x00000030       0x31 src/uCconfig/uCconfigPorts.o
  .comment       0x00000030       0x31 test/FreeRTOSmain.o
 
 .note.gnu.avr.deviceinfo
@@ -819,28 +819,28 @@ END GROUP
  .debug_aranges
                 0x000000c8      0x150 lib/tasks.o
  .debug_aranges
-                0x00000218       0x20 src/uCConfig/uCConfigPorts.o
+                0x00000218       0x20 src/task/primary/primary.o
  .debug_aranges
-                0x00000238       0x20 src/module/moduleStartTasks.o
+                0x00000238       0x20 src/task/taskStartThreads.o
  .debug_aranges
-                0x00000258       0x20 src/module/module.o
+                0x00000258       0x20 src/uCconfig/uCconfigPorts.o
  .debug_aranges
                 0x00000278       0x20 test/FreeRTOSmain.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x286c
+.debug_info     0x00000000     0x285e
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_info    0x000004e6      0x1a4 lib/heap_1.o
  .debug_info    0x0000068a      0x2d8 lib/list.o
  .debug_info    0x00000962      0x24e lib/port.o
  .debug_info    0x00000bb0     0x1991 lib/tasks.o
- .debug_info    0x00002541       0x40 src/uCConfig/uCConfigPorts.o
- .debug_info    0x00002581      0x140 src/module/moduleStartTasks.o
- .debug_info    0x000026c1       0xc4 src/module/module.o
- .debug_info    0x00002785       0xe7 test/FreeRTOSmain.o
+ .debug_info    0x00002541       0x7e src/task/primary/primary.o
+ .debug_info    0x000025bf      0x140 src/task/taskStartThreads.o
+ .debug_info    0x000026ff       0x78 src/uCconfig/uCconfigPorts.o
+ .debug_info    0x00002777       0xe7 test/FreeRTOSmain.o
 
 .debug_abbrev   0x00000000      0xcc7
  *(.debug_abbrev)
@@ -849,22 +849,22 @@ END GROUP
  .debug_abbrev  0x000005bf       0xff lib/list.o
  .debug_abbrev  0x000006be      0x143 lib/port.o
  .debug_abbrev  0x00000801      0x294 lib/tasks.o
- .debug_abbrev  0x00000a95       0x2e src/uCConfig/uCConfigPorts.o
- .debug_abbrev  0x00000ac3       0xd8 src/module/moduleStartTasks.o
- .debug_abbrev  0x00000b9b       0x8f src/module/module.o
+ .debug_abbrev  0x00000a95       0x79 src/task/primary/primary.o
+ .debug_abbrev  0x00000b0e       0xd8 src/task/taskStartThreads.o
+ .debug_abbrev  0x00000be6       0x44 src/uCconfig/uCconfigPorts.o
  .debug_abbrev  0x00000c2a       0x9d test/FreeRTOSmain.o
 
-.debug_line     0x00000000     0x1a14
+.debug_line     0x00000000     0x1a5a
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x116 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_line    0x00000116      0x1cd lib/heap_1.o
  .debug_line    0x000002e3      0x21d lib/list.o
  .debug_line    0x00000500      0x2ea lib/port.o
  .debug_line    0x000007ea      0xfc8 lib/tasks.o
- .debug_line    0x000017b2       0x4d src/uCConfig/uCConfigPorts.o
- .debug_line    0x000017ff       0xa8 src/module/moduleStartTasks.o
- .debug_line    0x000018a7       0x56 src/module/module.o
- .debug_line    0x000018fd      0x117 test/FreeRTOSmain.o
+ .debug_line    0x000017b2       0x84 src/task/primary/primary.o
+ .debug_line    0x00001836       0xc2 src/task/taskStartThreads.o
+ .debug_line    0x000018f8       0x4d src/uCconfig/uCconfigPorts.o
+ .debug_line    0x00001945      0x115 test/FreeRTOSmain.o
 
 .debug_frame    0x00000000      0x718
  *(.debug_frame)
@@ -872,12 +872,12 @@ END GROUP
  .debug_frame   0x00000060       0x88 lib/list.o
  .debug_frame   0x000000e8       0x84 lib/port.o
  .debug_frame   0x0000016c      0x50c lib/tasks.o
- .debug_frame   0x00000678       0x24 src/uCConfig/uCConfigPorts.o
- .debug_frame   0x0000069c       0x34 src/module/moduleStartTasks.o
- .debug_frame   0x000006d0       0x24 src/module/module.o
+ .debug_frame   0x00000678       0x24 src/task/primary/primary.o
+ .debug_frame   0x0000069c       0x34 src/task/taskStartThreads.o
+ .debug_frame   0x000006d0       0x24 src/uCconfig/uCconfigPorts.o
  .debug_frame   0x000006f4       0x24 test/FreeRTOSmain.o
 
-.debug_str      0x00000000      0xf6a
+.debug_str      0x00000000      0xf70
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.6.364/gcc/dev/atmega32/avr5/crtatmega32.o
  .debug_str     0x00000196      0x1ed lib/heap_1.o
@@ -888,13 +888,13 @@ END GROUP
                                 0x2ae (size before relaxing)
  .debug_str     0x000005e8      0x8a9 lib/tasks.o
                                 0xc3e (size before relaxing)
- .debug_str     0x00000e91       0x2e src/uCConfig/uCConfigPorts.o
-                                0x11d (size before relaxing)
- .debug_str     0x00000ebf       0x64 src/module/moduleStartTasks.o
-                                0x20d (size before relaxing)
- .debug_str     0x00000f23       0x2b src/module/module.o
-                                0x1bd (size before relaxing)
- .debug_str     0x00000f4e       0x1c test/FreeRTOSmain.o
+ .debug_str     0x00000e91       0x54 src/task/primary/primary.o
+                                0x150 (size before relaxing)
+ .debug_str     0x00000ee5       0x41 src/task/taskStartThreads.o
+                                0x20b (size before relaxing)
+ .debug_str     0x00000f26       0x2e src/uCconfig/uCconfigPorts.o
+                                0x184 (size before relaxing)
+ .debug_str     0x00000f54       0x1c test/FreeRTOSmain.o
                                 0x1bf (size before relaxing)
 
 .debug_loc      0x00000000     0x22c8
@@ -903,7 +903,7 @@ END GROUP
  .debug_loc     0x0000010f      0x145 lib/list.o
  .debug_loc     0x00000254      0x2a0 lib/port.o
  .debug_loc     0x000004f4     0x1d44 lib/tasks.o
- .debug_loc     0x00002238       0x90 src/module/moduleStartTasks.o
+ .debug_loc     0x00002238       0x90 src/task/taskStartThreads.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -929,9 +929,9 @@ END GROUP
  .debug_ranges  0x00000028       0x30 lib/list.o
  .debug_ranges  0x00000058       0x40 lib/port.o
  .debug_ranges  0x00000098      0x180 lib/tasks.o
- .debug_ranges  0x00000218       0x10 src/uCConfig/uCConfigPorts.o
- .debug_ranges  0x00000228       0x10 src/module/moduleStartTasks.o
- .debug_ranges  0x00000238       0x10 src/module/module.o
+ .debug_ranges  0x00000218       0x10 src/task/primary/primary.o
+ .debug_ranges  0x00000228       0x10 src/task/taskStartThreads.o
+ .debug_ranges  0x00000238       0x10 src/uCconfig/uCconfigPorts.o
  .debug_ranges  0x00000248       0x10 test/FreeRTOSmain.o
 
 .debug_macro

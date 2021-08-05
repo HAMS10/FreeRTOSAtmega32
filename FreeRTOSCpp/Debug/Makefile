@@ -35,8 +35,10 @@ LINKER_SCRIPT_DEP:=
 SUBDIRS :=  \
 ../lib \
 ../src \
-../src/uCConfig \
-../src/module \
+../src/task/dataShare \
+../src/task/primary \
+../src/uCconfig \
+../src/task \
 ../test
 
 
@@ -51,9 +53,9 @@ C_SRCS +=  \
 ../lib/stream_buffer.c \
 ../lib/tasks.c \
 ../lib/timers.c \
-../src/uCConfig/uCConfigPorts.c \
-../src/module/moduleStartTasks.c \
-../src/module/module.c \
+../src/task/primary/primary.c \
+../src/task/taskStartThreads.c \
+../src/uCconfig/uCconfigPorts.c \
 ../test/FreeRTOSmain.c
 
 
@@ -73,9 +75,9 @@ lib/queue.o \
 lib/stream_buffer.o \
 lib/tasks.o \
 lib/timers.o \
-src/uCConfig/uCConfigPorts.o \
-src/module/moduleStartTasks.o \
-src/module/module.o \
+src/task/primary/primary.o \
+src/task/taskStartThreads.o \
+src/uCconfig/uCconfigPorts.o \
 test/FreeRTOSmain.o
 
 OBJS_AS_ARGS +=  \
@@ -88,9 +90,9 @@ lib/queue.o \
 lib/stream_buffer.o \
 lib/tasks.o \
 lib/timers.o \
-src/uCConfig/uCConfigPorts.o \
-src/module/moduleStartTasks.o \
-src/module/module.o \
+src/task/primary/primary.o \
+src/task/taskStartThreads.o \
+src/uCconfig/uCconfigPorts.o \
 test/FreeRTOSmain.o
 
 C_DEPS +=  \
@@ -103,9 +105,9 @@ lib/queue.d \
 lib/stream_buffer.d \
 lib/tasks.d \
 lib/timers.d \
-src/uCConfig/uCConfigPorts.d \
-src/module/moduleStartTasks.d \
-src/module/module.d \
+src/task/primary/primary.d \
+src/task/taskStartThreads.d \
+src/uCconfig/uCconfigPorts.d \
 test/FreeRTOSmain.d
 
 C_DEPS_AS_ARGS +=  \
@@ -118,9 +120,9 @@ lib/queue.d \
 lib/stream_buffer.d \
 lib/tasks.d \
 lib/timers.d \
-src/uCConfig/uCConfigPorts.d \
-src/module/moduleStartTasks.d \
-src/module/module.d \
+src/task/primary/primary.d \
+src/task/taskStartThreads.d \
+src/uCconfig/uCconfigPorts.d \
 test/FreeRTOSmain.d
 
 OUTPUT_FILE_PATH +=FreeRTOSCpp.elf
@@ -200,21 +202,21 @@ lib/timers.o: ../lib/timers.c
 	@echo Finished building: $<
 	
 
-src/uCConfig/uCConfigPorts.o: ../src/uCConfig/uCConfigPorts.c
+src/task/primary/primary.o: ../src/task/primary/primary.c
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../FreeRTOS/Source" -I"../../FreeRTOS/Source/include" -I"../../FreeRTOS/Source/portable/MemMang" -I"../../FreeRTOS/Source/portable/GCC/ATMega323"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-src/module/moduleStartTasks.o: ../src/module/moduleStartTasks.c
+src/task/taskStartThreads.o: ../src/task/taskStartThreads.c
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../FreeRTOS/Source" -I"../../FreeRTOS/Source/include" -I"../../FreeRTOS/Source/portable/MemMang" -I"../../FreeRTOS/Source/portable/GCC/ATMega323"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
-src/module/module.o: ../src/module/module.c
+src/uCconfig/uCconfigPorts.o: ../src/uCconfig/uCconfigPorts.c
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\include" -I"../../FreeRTOS/Source" -I"../../FreeRTOS/Source/include" -I"../../FreeRTOS/Source/portable/MemMang" -I"../../FreeRTOS/Source/portable/GCC/ATMega323"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

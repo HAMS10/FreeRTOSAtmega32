@@ -19,9 +19,11 @@ test/FreeRTOSmain.d test/FreeRTOSmain.o: ../test/FreeRTOSmain.c \
  ../../FreeRTOS/Source/portable/GCC/ATMega323/portmacro.h \
  ../../FreeRTOS/Source/include/mpu_wrappers.h \
  ../../FreeRTOS/Source/include/task.h \
- ../../FreeRTOS/Source/include/list.h ../test/../src/uCConfig.h \
- ../test/../src/uCConfig/uCConfigPorts.h ../test/../src/module.h \
- ../test/../src/module/module.h ../test/../src/module/moduleStartTasks.h
+ ../../FreeRTOS/Source/include/list.h ../test/../src/src_uCConfig.h \
+ ../test/../src/uCconfig/uCconfigPorts.h ../test/../src/srcTask.h \
+ ../test/../src/task/dataShare/dataShareParameter.h \
+ ../test/../src/task/taskStartThreads.h \
+ ../test/../src/task/primary/primary.h
 
 ../../FreeRTOS/Source/include/FreeRTOS.h:
 
@@ -65,12 +67,14 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ../../FreeRTOS/Source/include/list.h:
 
-../test/../src/uCConfig.h:
+../test/../src/src_uCConfig.h:
 
-../test/../src/uCConfig/uCConfigPorts.h:
+../test/../src/uCconfig/uCconfigPorts.h:
 
-../test/../src/module.h:
+../test/../src/srcTask.h:
 
-../test/../src/module/module.h:
+../test/../src/task/dataShare/dataShareParameter.h:
 
-../test/../src/module/moduleStartTasks.h:
+../test/../src/task/taskStartThreads.h:
+
+../test/../src/task/primary/primary.h:

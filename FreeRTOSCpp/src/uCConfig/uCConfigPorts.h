@@ -9,6 +9,6 @@
 #ifndef UCCONFIGPORTS_H_
 #define UCCONFIGPORTS_H_
 
-void uCConfigPorts(void);
+void uCconfigPorts(void);
 
-#endif /* UCCONFIGPORTS_H_ */
+#endif /* CONFIGPORTS_H_ */
